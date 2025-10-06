@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checklist: Como Começar seu Negócio | Prospera Rio</title>
+
+  <!-- Tipografia oficial -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ================================
+       Padrão Visual — Prospera Rio
+       Paleta oficial
+       --azul-principal: #092040;
+       --azul-secundaria: #00B7D7;
+       --amarelo-acento: #ECC203;
+       --cinza-neutro:   #EFF1F3;
+       --azul-escuro:    #021738;
+       --branco:         #FFFFFF;
+       Suporte
+       --verde-sucesso:  #10b981;
+       Tipografia: Montserrat (títulos) / Open Sans (texto)
+       ================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --azul-principal: #092040;
+      --azul-secundaria: #00B7D7;
+      --amarelo-acento: #ECC203;
+      --cinza-neutro: #EFF1F3;
+      --azul-escuro: #021738;
+      --branco: #FFFFFF;
+      --verde-sucesso: #10b981;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--cinza-neutro);
+      color: var(--azul-escuro);
+      line-height: 1.6;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-secundaria) 100%);
+      color: var(--branco);
+      padding: 48px 40px;
+      border-radius: 16px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 40px rgba(9, 32, 64, 0.28);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .header::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(900px 300px at 100% -10%, rgba(255,255,255,0.08), transparent 60%),
+                  radial-gradient(700px 250px at -10% 100%, rgba(255,255,255,0.06), transparent 60%);
+      z-index:0;
+    }
+
+    .logo-container {
+      display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 22px; position: relative; z-index:1;
+    }
+
+    .logo { max-width: 200px; height: auto; }
+
+    .location-text {
+      font: 700 0.9rem 'Montserrat', sans-serif;
+      letter-spacing: 3px;
+      color: var(--amarelo-acento);
+      text-transform: uppercase;
+    }
+
+    .header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+      position: relative; z-index:1;
+    }
+
+    .header p {
+      font-size: 1.125rem;
+      opacity: 0.95;
+      text-align: center;
+      position: relative; z-index:1;
+    }
+
+    /* Cartões de introdução e progresso */
+    .intro-card {
+      background: linear-gradient(135deg, #FFF9E6 0%, var(--branco) 100%);
+      padding: 32px;
+      border-radius: 12px;
+      margin: 32px 0 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-left: 6px solid var(--amarelo-acento);
+    }
+    .intro-card h2 {
+      font: 700 1.75rem 'Montserrat', sans-serif;
+      color: var(--azul-principal);
+      margin-bottom: 12px;
+    }
+    .intro-card p { font-size: 1.05rem; color: var(--azul-escuro); }
+
+    .progresso-geral {
+      background: var(--branco);
+      padding: 28px;
+      border-radius: 12px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .progresso-geral h3 {
+      font: 700 1.35rem 'Montserrat', sans-serif;
+      color: var(--azul-principal);
+      margin-bottom: 16px;
+    }
+    .barra-progresso {
+      background: var(--cinza-neutro);
+      height: 40px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+    }
+    .barra-progresso-fill {
+      background: linear-gradient(90deg, var(--azul-secundaria) 0%, var(--verde-sucesso) 100%);
+      height: 100%; width: 0%;
+      transition: width 0.5s ease;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--branco);
+      font: 700 1.05rem 'Montserrat', sans-serif;
+    }
+
+    /* Fases */
+    .fases-container { display: flex; flex-direction: column; gap: 24px; }
+
+    .fase-card {
+      background: var(--branco);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      border: 2px solid transparent;
+    }
+    .fase-card.completa { border-color: var(--verde-sucesso); }
+
+    .fase-header {
+      background: var(--azul-principal);
+      color: var(--branco);
+      padding: 22px 26px;
+      display: flex; align-items: center; gap: 18px;
+      cursor: pointer;
+      transition: background .2s ease;
+      outline: none;
+    }
+    .fase-header:hover { background: var(--azul-secundaria); }
+    .fase-header:focus-visible { outline: 3px solid var(--amarelo-acento); outline-offset: 2px; }
+
+    .fase-numero {
+      background: var(--amarelo-acento);
+      color: var(--azul-principal);
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font: 700 1.5rem 'Montserrat', sans-serif;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(236, 194, 3, 0.32);
+    }
+
+    .fase-info { flex: 1; }
+    .fase-info h3 {
+      font: 700 1.5rem 'Montserrat', sans-serif;
+      margin-bottom: 4px;
+    }
+    .fase-info p { font-size: .98rem; opacity: .95; }
+
+    .fase-status {
+      font: 600 .9rem 'Montserrat', sans-serif;
+      padding: 6px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+      white-space: nowrap;
+    }
+
+    .fase-content { padding: 24px; }
+
+    /* Checklist */
+    .checklist-items { display: flex; flex-direction: column; gap: 14px; }
+
+    .checklist-item {
+      display: flex; align-items: start; gap: 14px;
+      padding: 18px;
+      background: var(--cinza-neutro);
+      border-radius: 10px;
+      border-left: 4px solid var(--azul-secundaria);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+      cursor: pointer;
+    }
+    .checklist-item:hover { background: #E7EBEE; transform: translateX(4px); }
+    .checklist-item:focus-within { outline: 3px solid var(--amarelo-acento); outline-offset: 2px; }
+    .checklist-item.completo {
+      background: #d1fae5; border-left-color: var(--verde-sucesso);
+      box-shadow: inset 0 0 0 1px rgba(16,185,129,.25);
+    }
+
+    .checkbox-custom {
+      width: 28px; height: 28px;
+      border: 3px solid var(--azul-secundaria);
+      border-radius: 8px; flex-shrink: 0;
+      display: grid; place-items: center;
+      background: var(--branco);
+      transition: background .15s ease, border-color .15s ease, transform .1s ease;
+    }
+    .checklist-item.completo .checkbox-custom { background: var(--verde-sucesso); border-color: var(--verde-sucesso); }
+    .checkbox-custom::after {
+      content: "✓"; color: var(--branco); font-size: 1.35rem; font-weight: 700; display: none;
+    }
+    .checklist-item.completo .checkbox-custom::after { display: block; }
+    .checkbox-custom:active { transform: scale(.96); }
+
+    .item-content { flex: 1; }
+    .item-content h4 {
+      font: 700 1.12rem 'Montserrat', sans-serif;
+      color: var(--azul-principal); margin-bottom: 6px;
+    }
+    .item-content p { font-size: .98rem; color: var(--azul-escuro); }
+
+    .dica-pratica {
+      background: #F0F9FC;
+      padding: 12px 14px; border-radius: 8px; margin-top: 10px;
+      border-left: 3px solid var(--azul-secundaria);
+    }
+    .dica-pratica strong {
+      color: var(--azul-secundaria); font-weight: 700; display: block; margin-bottom: 4px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .dica-pratica p { margin: 0; font-size: .95rem; }
+
+    /* Bloco de lembretes — sem emojis */
+    .dica-importante {
+      background: var(--azul-principal);
+      color: var(--branco);
+      padding: 32px;
+      border-radius: 12px;
+      margin: 36px 0;
+      box-shadow: 0 8px 30px rgba(9, 32, 64, 0.28);
+    }
+    .dica-importante h3 {
+      font: 700 1.45rem 'Montserrat', sans-serif;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .dica-importante ul { list-style: none; }
+    .dica-importante li {
+      padding: 10px 0 10px 28px; position: relative; font-size: 1.02rem; line-height: 1.7;
+    }
+    .dica-importante li:before {
+      content: "—";
+      position: absolute; left: 0; color: var(--amarelo-acento); font-weight: 700; font-size: 1.2rem;
+    }
+
+    /* Botões de ação */
+    .action-buttons {
+      display: flex; gap: 14px; justify-content: center; margin-top: 28px; flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 30px; border: none; border-radius: 10px;
+      font: 700 1rem 'Montserrat', sans-serif; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+      text-decoration: none; display: inline-block;
+    }
+    .btn:focus-visible { outline: 3px solid var(--amarelo-acento); outline-offset: 2px; }
+    .btn-primary {
+      background: var(--amarelo-acento); color: var(--azul-principal);
+      box-shadow: 0 4px 14px rgba(236, 194, 3, 0.28);
+    }
+    .btn-primary:hover { background: #d4a803; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(236, 194, 3, 0.36); }
+    .btn-secondary {
+      background: var(--azul-secundaria); color: var(--branco);
+      box-shadow: 0 4px 14px rgba(0, 183, 215, 0.28);
+    }
+    .btn-secondary:hover { background: var(--azul-principal); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--azul-principal); border: 2px solid var(--azul-principal);
+    }
+    .btn-ghost:hover { background: var(--azul-principal); color: var(--branco); }
+
+    /* Responsivo e impressão */
+    @media (max-width: 768px) {
+      .header h1 { font-size: 2rem; }
+      .fase-header { flex-direction: column; text-align: center; align-items: center; }
+      .action-buttons { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+    @media print {
+      body { background: var(--branco); }
+      .header, .action-buttons { display: none !important; }
+      .fase-content { display: block !important; }
+      .fase-card { break-inside: avoid; border: 1px solid #ddd; }
+    }
+/* Fazer a faixa azul ocupar toda a largura do card */
+.fase-card > .fase-header{
+  width: 100%;
+  display: flex;            /* já está, mas mantemos por clareza */
+  text-align: left;
+  border: 0;                /* remove borda nativa do button */
+  border-radius: 0;         /* evita cantos arredondados do botão */
+  box-sizing: border-box;   /* garante cálculo correto com padding */
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header" role="banner">
+      <div class="logo-container">
+        <img class="logo" src="https://lh3.googleusercontent.com/d/1x5sNkC9vd7CI78y0xdkWvgoadxPEMcIf=w800" alt="Logomarca Prospera Rio" />
+        <div class="location-text" aria-label="Localidades atendidas">MARÉ · JACAREZINHO</div>
+      </div>
+      <h1>Checklist: Como Começar</h1>
+      <p>Guia prático, claro e aplicável para tirar sua ideia do papel.</p>
+    </header>
+
+    <!-- Intro -->
+    <section class="intro-card" aria-labelledby="como-usar">
+      <h2 id="como-usar">Como usar este checklist?</h2>
+      <p>O conteúdo está organizado em 5 fases essenciais. Marque cada item conforme avança e acompanhe seu progresso.</p>
+      <p><strong>Importante:</strong> Não pule etapas. Cada fase prepara você para a próxima. Avance quando atingir pelo menos 80% de conclusão.</p>
+    </section>
+
+    <!-- Progresso -->
+    <section class="progresso-geral" aria-labelledby="progresso-titulo">
+      <h3 id="progresso-titulo">Seu Progresso Total</h3>
+      <div class="barra-progresso" aria-hidden="true">
+        <div class="barra-progresso-fill" id="progressoGeral" aria-live="polite">0%</div>
+      </div>
+      <p style="margin-top: 12px; color: var(--azul-escuro); font-size: 1.02rem;">
+        <strong id="itensCompletos">0</strong> de <strong id="itensTotal">0</strong> itens completos
+      </p>
+    </section>
+
+    <!-- Fases -->
+    <main class="fases-container">
+      <!-- Fase 1 -->
+      <article class="fase-card">
+        <button class="fase-header" type="button" onclick="toggleFase(this)" aria-expanded="true">
+          <div class="fase-numero">1</div>
+          <div class="fase-info">
+            <h3>Validação da Ideia</h3>
+            <p>Teste se sua ideia tem potencial antes de investir</p>
+          </div>
+          <div class="fase-status" id="status-fase-1">0/6 completos</div>
+        </button>
+        <div class="fase-content" style="display: block;">
+          <div class="checklist-items">
+            <!-- Item -->
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom" aria-hidden="true"></div>
+              <div class="item-content">
+                <h4>Defina claramente o problema que você resolve</h4>
+                <p>Identifique uma necessidade real das pessoas. Não invente um problema que não existe.</p>
+                <div class="dica-pratica">
+                  <strong>Dica prática</strong>
+                  <p>Converse com 10 pessoas do público-alvo e pergunte: “Qual é sua maior dificuldade com [tema]?”</p>
+                </div>
+              </div>
+            </div>
+            <!-- Item -->
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom" aria-hidden="true"></div>
+              <div class="item-content">
+                <h4>Preencha o Mapa da Minha Ideia completamente</h4>
+                <p>Use a ferramenta do seminário para organizar todos os aspectos do negócio.</p>
+                <div class="dica-pratica">
+                  <strong>Dica prática</strong>
+                  <p>Não deixe campos em branco. Se não souber a resposta, pesquise antes de seguir.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Item -->
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom" aria-hidden="true"></div>
+              <div class="item-content">
+                <h4>Pesquise a concorrência</h4>
+                <p>Encontre pelo menos 3 concorrentes. Observe diferenciais, preço e atendimento.</p>
+                <div class="dica-pratica">
+                  <strong>Dica prática</strong>
+                  <p>Siga-os no Instagram. Anote preços, frequência de posts e feedbacks de clientes.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Item -->
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom" aria-hidden="true"></div>
+              <div class="item-content">
+                <h4>Teste sua ideia com pessoas reais</h4>
+                <p>Mostre a proposta para ao menos 20 pessoas do público-alvo e peça feedback honesto.</p>
+                <div class="dica-pratica">
+                  <strong>Dica prática</strong>
+                  <p>Pergunte: “Você pagaria R$ [preço] por isso?” e “O que mudaria?”</p>
+                </div>
+              </div>
+            </div>
+            <!-- Item -->
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom" aria-hidden="true"></div>
+              <div class="item-content">
+                <h4>Calcule os custos iniciais no Simulador</h4>
+                <p>Use um simulador para saber quanto precisa para começar com segurança.</p>
+                <div class="dica-pratica">
+                  <strong>Dica prática</strong>
+                  <p>Pesquise preços reais e adicione 20% de margem para imprevistos.</p>
+                </div>
+              </div>
+            </div>
+            <!-- Item -->
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom" aria-hidden="true"></div>
+              <div class="item-content">
+                <h4>Decida se vale a pena continuar</h4>
+                <p>Analise os dados coletados com honestidade: há potencial real?</p>
+                <div class="dica-pratica">
+                  <strong>Dica prática</strong>
+                  <p>Se menos de 50% demonstraram interesse, ajuste a proposta antes de investir.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Fase 2 -->
+      <article class="fase-card">
+        <button class="fase-header" type="button" onclick="toggleFase(this)" aria-expanded="false">
+          <div class="fase-numero">2</div>
+          <div class="fase-info">
+            <h3>Preparação e Planejamento</h3>
+            <p>Organize tudo que você precisa para começar</p>
+          </div>
+          <div class="fase-status" id="status-fase-2">0/7 completos</div>
+        </button>
+        <div class="fase-content" style="display: none;">
+          <div class="checklist-items">
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom"></div>
+              <div class="item-content">
+                <h4>Defina nome e identidade visual básica</h4>
+                <p>Nome fácil de falar, escrever e lembrar. Comece simples (Canva atende).</p>
+                <div class="dica-pratica"><strong>Dica prática</strong><p>Teste com 5 pessoas: elas lembram e pronunciam sem esforço?</p></div>
+              </div>
+            </div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom"></div>
+              <div class="item-content">
+                <h4>Liste materiais e ferramentas essenciais</h4>
+                <p>Separe “essencial” de “desejável” para não travar o início.</p>
+                <div class="dica-pratica"><strong>Dica prática</strong><p>Priorize o que impacta diretamente a venda.</p></div>
+              </div>
+            </div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom"></div>
+              <div class="item-content">
+                <h4>Defina preços com base em custos reais</h4>
+                <p>Preço mínimo: <em>custo total ÷ 0,7</em> (30% de margem).</p>
+                <div class="dica-pratica"><strong>Dica prática</strong><p>Evite “no olho”. Registre cada custo.</p></div>
+              </div>
+            </div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom"></div>
+              <div class="item-content">
+                <h4>Crie perfis nas redes sociais</h4>
+                <p>Instagram obrigatório; Facebook/TikTok conforme o público.</p>
+                <div class="dica-pratica"><strong>Dica prática</strong><p>Nome unificado e bio com proposta clara + contato.</p></div>
+              </div>
+            </div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom"></div>
+              <div class="item-content">
+                <h4>Planeje os primeiros 10 posts</h4>
+                <p>Mix: apresentação, produto, bastidores, dicas e prova social.</p>
+                <div class="dica-pratica"><strong>Dica prática</strong><p>Agende no Meta Business Suite.</p></div>
+              </div>
+            </div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom"></div>
+              <div class="item-content">
+                <h4>Configure formas de pagamento</h4>
+                <p>Essencial: Pix. Recomendado: link de pagamento (cartão).</p>
+                <div class="dica-pratica"><strong>Dica prática</strong><p>Faça um pagamento teste para validar o fluxo.</p></div>
+              </div>
+            </div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)">
+              <div class="checkbox-custom"></div>
+              <div class="item-content">
+                <h4>Crie um controle financeiro simples</h4>
+                <p>Planilha no Google Sheets já resolve no início.</p>
+                <div class="dica-pratica"><strong>Dica prática</strong><p>Anote diariamente entradas, saídas e estoque.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Fase 3 -->
+      <article class="fase-card">
+        <button class="fase-header" type="button" onclick="toggleFase(this)" aria-expanded="false">
+          <div class="fase-numero">3</div>
+          <div class="fase-info">
+            <h3>Lançamento e Primeiras Vendas</h3>
+            <p>Coloque no ar e faça as primeiras vendas</p>
+          </div>
+          <div class="fase-status" id="status-fase-3">0/6 completos</div>
+        </button>
+        <div class="fase-content" style="display: none;">
+          <div class="checklist-items">
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Post de lançamento impactante</h4><p>Conte sua história, mostre o produto e faça oferta inaugural.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Desconto para 10 primeiros ou brinde. Crie urgência.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Divulgue para sua rede pessoal</h4><p>Avisar amigos e conhecidos; peça compartilhamento.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Mensagem direta e personalizada (sem spam).</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Conquiste os primeiros 10 clientes</h4><p>Atendimento excelente para gerar recorrência.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Peça feedback e transforme em depoimento.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Poste com consistência</h4><p>Mínimo 3x/semana + stories diários.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Mostre bastidores e responda comentários.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Colete e divulgue depoimentos</h4><p>Texto ou vídeo de clientes satisfeitos.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Ofereça incentivo na próxima compra.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Ajuste com base no feedback</h4><p>Se 3+ pessoas apontarem algo, é sinal claro.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Implemente mudanças rápidas e comunique.</p></div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Fase 4 -->
+      <article class="fase-card">
+        <button class="fase-header" type="button" onclick="toggleFase(this)" aria-expanded="false">
+          <div class="fase-numero">4</div>
+          <div class="fase-info">
+            <h3>Crescimento e Expansão</h3>
+            <p>Escale com sustentabilidade</p>
+          </div>
+          <div class="fase-status" id="status-fase-4">0/6 completos</div>
+        </button>
+        <div class="fase-content" style="display: none;">
+          <div class="checklist-items">
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Analise números do 1º mês</h4><p>Vendas, lucro, mais vendidos, encalhes.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Relatório simples: receita, custos, lucro líquido.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Otimize o que funciona</h4><p>Regra 80/20: foque no que gera receita.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Corte ofertas sem giro.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Programa de fidelização</h4><p>Cartão fidelidade, cupons, brindes.</p><div class="dica-pratica"><strong>Dica prática</strong><p>10% de desconto a cada 5 compras.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Parcerias estratégicas</h4><p>Negócios complementares e indicações cruzadas.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Ex.: roupas fitness + personal trainer.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Teste anúncios pagos</h4><p>Comece pequeno (R$ 5/dia por 10 dias).</p><div class="dica-pratica"><strong>Dica prática</strong><p>Escale se cobrir gasto + lucro.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Considere formalização (MEI)</h4><p>CNPJ, NF, benefícios e crédito.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Custos baixos e abertura simples.</p></div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Fase 5 -->
+      <article class="fase-card">
+        <button class="fase-header" type="button" onclick="toggleFase(this)" aria-expanded="false">
+          <div class="fase-numero">5</div>
+          <div class="fase-info">
+            <h3>Profissionalização e Consolidação</h3>
+            <p>Estruture para sustentar o crescimento</p>
+          </div>
+          <div class="fase-status" id="status-fase-5">0/5 completos</div>
+        </button>
+        <div class="fase-content" style="display: none;">
+          <div class="checklist-items">
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Estabeleça processos claros</h4><p>Documente produção, atendimento e entrega.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Use checklists para treinar e delegar.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Separe finanças pessoais e do negócio</h4><p>Conta exclusiva e pró-labore fixo.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Evite confundir caixa com renda pessoal.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Capacitação contínua</h4><p>1 curso por trimestre (gestão/marketing/técnico).</p><div class="dica-pratica"><strong>Dica prática</strong><p>Aproveite trilhas gratuitas reconhecidas.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Mentoria e comunidade</h4><p>Troca com outros empreendedores acelera.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Participe de encontros e grupos locais.</p></div></div></div>
+            <div class="checklist-item" tabindex="0" onclick="toggleItem(this)" onkeydown="keyToggle(event, this)"><div class="checkbox-custom"></div><div class="item-content"><h4>Planeje o futuro</h4><p>Metas de 12 meses: clientes, produtos, receita.</p><div class="dica-pratica"><strong>Dica prática</strong><p>Escreva metas específicas e mensuráveis.</p></div></div></div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Lembretes importantes (sem emoji) -->
+    <section class="dica-importante" aria-labelledby="lembretes">
+      <h3 id="lembretes">Atenção — Lembretes Importantes</h3>
+      <ul>
+        <li><strong>Não tenha pressa:</strong> melhor começar com qualidade do que rápido e bagunçado.</li>
+        <li><strong>Erros fazem parte:</strong> ajuste rápido e siga em frente.</li>
+        <li><strong>Foco no cliente:</strong> atendimento excelente é o melhor marketing.</li>
+        <li><strong>Cuide das finanças:</strong> registre tudo; caixa é oxigênio do negócio.</li>
+        <li><strong>Consistência vence:</strong> resultado é efeito acumulado de boas rotinas.</li>
+        <li><strong>Peça ajuda:</strong> use recursos gratuitos confiáveis.</li>
+        <li><strong>Celebre conquistas:</strong> cada venda é uma vitória estratégica.</li>
+      </ul>
+    </section>
+
+    <!-- Ações -->
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="salvarProgresso()" aria-label="Salvar meu progresso">Salvar Meu Progresso</button>
+      <button class="btn btn-secondary" onclick="window.print()" aria-label="Imprimir checklist">Imprimir Checklist</button>
+      <button class="btn btn-ghost" onclick="resetarChecklist()" aria-label="Resetar checklist">Resetar Checklist</button>
+    </div>
+  </div>
+
+  <script>
+    // Estado
+    let totalItens = 0;
+    let itensCompletos = 0;
+    const STORAGE_KEY = 'checklistProgresso_v1';
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', inicializar);
+
+    function inicializar() {
+      totalItens = document.querySelectorAll('.checklist-item').length;
+      document.getElementById('itensTotal').textContent = totalItens;
+      carregarProgresso();
+      atualizarTodosStatus();
+    }
+
+    // Acessibilidade: espaço/enter alternam seleção
+    function keyToggle(e, el){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        toggleItem(el);
+      }
+    }
+
+    // Expandir/contrair fases
+    function toggleFase(header) {
+      const content = header.parentElement.querySelector('.fase-content');
+      const isVisible = content.style.display === 'block';
+      content.style.display = isVisible ? 'none' : 'block';
+      header.setAttribute('aria-expanded', String(!isVisible));
+    }
+
+    // Marcar item
+    function toggleItem(item) {
+      item.classList.toggle('completo');
+      salvarProgressoLocal();
+      atualizarTodosStatus();
+    }
+
+    // Atualiza status das fases e barra geral
+    function atualizarTodosStatus() {
+      const faseCards = document.querySelectorAll('.fase-card');
+      faseCards.forEach((faseCard, idx) => {
+        const itens = faseCard.querySelectorAll('.checklist-item');
+        const completos = faseCard.querySelectorAll('.checklist-item.completo').length;
+        const statusEl = document.getElementById(`status-fase-${idx+1}`);
+        if (statusEl) statusEl.textContent = `${completos}/${itens.length} completos`;
+        faseCard.classList.toggle('completa', completos === itens.length);
+      });
+
+      itensCompletos = document.querySelectorAll('.checklist-item.completo').length;
+      const porcentagem = totalItens ? Math.round((itensCompletos / totalItens) * 100) : 0;
+
+      document.getElementById('itensCompletos').textContent = itensCompletos;
+      const barra = document.getElementById('progressoGeral');
+      barra.style.width = porcentagem + '%';
+      barra.textContent = porcentagem + '%';
+      barra.setAttribute('aria-valuenow', String(porcentagem));
+      barra.setAttribute('aria-valuemin', '0');
+      barra.setAttribute('aria-valuemax', '100');
+      barra.setAttribute('role', 'progressbar');
+    }
+
+    // Persistência
+    function salvarProgressoLocal() {
+      const state = Array.from(document.querySelectorAll('.checklist-item'))
+        .map(item => item.classList.contains('completo'));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function carregarProgresso() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      try {
+        const state = JSON.parse(saved);
+        document.querySelectorAll('.checklist-item').forEach((item, i) => {
+          if (state[i]) item.classList.add('completo');
+        });
+      } catch(e) { /* ignore */ }
+    }
+
+    // Exportar progresso (.txt)
+    function salvarProgresso() {
+      salvarProgressoLocal();
+
+      let conteudo = 'MEU PROGRESSO — CHECKLIST COMO COMEÇAR\n';
+      conteudo += 'PROSPERA RIO — MARÉ E JACAREZINHO\n';
+      conteudo += '='.repeat(70) + '\n\n';
+      conteudo += `Progresso Total: ${itensCompletos}/${totalItens} itens (${Math.round((itensCompletos/totalItens)*100)}%)\n`;
+      conteudo += `Data: ${new Date().toLocaleDateString('pt-BR')}\n\n`;
+
+      const fases = [
+        'Validação da Ideia',
+        'Preparação e Planejamento',
+        'Lançamento e Primeiras Vendas',
+        'Crescimento e Expansão',
+        'Profissionalização e Consolidação'
+      ];
+
+      document.querySelectorAll('.fase-card').forEach((fase, i) => {
+        conteudo += '\n' + fases[i].toUpperCase() + '\n' + '-'.repeat(70) + '\n';
+        fase.querySelectorAll('.checklist-item').forEach(item => {
+          const completo = item.classList.contains('completo');
+          const titulo = item.querySelector('h4').textContent.trim();
+          conteudo += `${completo ? '[✓]' : '[ ]'} ${titulo}\n`;
+        });
+      });
+
+      conteudo += '\n' + '='.repeat(70) + '\n';
+      conteudo += 'Continue: consistência + melhoria contínua = crescimento sustentável.\n';
+
+      const blob = new Blob([conteudo], { type: 'text/plain;charset=utf-8' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'meu-progresso-checklist-' + new Date().toLocaleDateString('pt-BR').replace(/\//g, '-') + '.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+
+      alert('Progresso salvo com sucesso.');
+    }
+
+    // Reset
+    function resetarChecklist() {
+      if (!confirm('Tem certeza que deseja resetar todo o progresso?')) return;
+      document.querySelectorAll('.checklist-item').forEach(item => item.classList.remove('completo'));
+      localStorage.removeItem(STORAGE_KEY);
+      atualizarTodosStatus();
+      alert('Checklist resetado. Você pode recomeçar do zero.');
+    }
+  </script>
+</body>
+</html>
